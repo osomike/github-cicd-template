@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-dep-oscar
+  namespace: dip-dev
+  labels:
+    app: my-cool-app
+    env: dev
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+        app: my-cool-app
+        env: dev
+  template:
+    metadata:
+      labels:
+        app: my-cool-app
+        env: dev
+    spec:
+      containers:
+      - name: test-deployment
+        image: ubuntu:latest
+        command: ["/bin/sleep", "3650d"]
