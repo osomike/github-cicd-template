@@ -30,8 +30,10 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Check out source code
-        id: checkoutstep
         uses: actions/checkout@v2
+      
+      - name: Get commit digest
+        id: checkoutstep
         run: |
           echo ::set-output name=CURRENT_TAG::(git rev-parse --short HEAD)
 
