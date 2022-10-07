@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dip-dev
+  labels:
+    name: dip-dev
+    env: dev
