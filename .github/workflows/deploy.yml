@@ -38,6 +38,19 @@ jobs:
           inlineScript: |
             az group list
 
+      - name: Install kubectl 
+        uses: azure/setup-kubectl@v3
+        with:
+          version: v1.25.2 # default is latest stable
+        id: install
+
+      - name: Set kubectl context
+        uses: azure/aks-set-context@v1
+        with:
+          creds: '${{ secrets.AZURE_CREDENTIALS }}' # Azure credentials
+          resource-group: 'dip-github-actions-rg'
+          cluster-name: 'dip-dev-k8s'
+        id: login
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
