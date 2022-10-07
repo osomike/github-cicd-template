@@ -5,3 +5,9 @@ metadata:
   labels:
     name: dip-dev
     env: dev
+kind: Namespace
+metadata:
+  name: dip-acp
+  labels:
+    name: dip-acp
+    env: acp
