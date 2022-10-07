@@ -38,6 +38,7 @@ jobs:
           inlineScript: |
             az group list
 
+      # Kubernetes deployments doc: https://github.com/marketplace/actions/deploy-to-kubernetes-cluster
       - name: Install kubectl 
         uses: azure/setup-kubectl@v3
         with:
@@ -51,6 +52,12 @@ jobs:
           resource-group: 'dip-github-actions-rg'
           cluster-name: 'dip-dev-k8s'
         id: login
+
+      - name: Deploy k8s manifests
+        uses: Azure/k8s-deploy@v3.1
+        with:
+          manifests: |
+              .github/workflows/deploy.yml
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
