@@ -30,18 +30,13 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Check out source code
+        id: checkoutstep
         uses: actions/checkout@v2
         run: |
-          git rev-parse --short HEAD
+          echo ::set-output name=CURRENT_TAG::(git rev-parse --short HEAD)
 
-      - name: Get TAG
-        id: tag
-        uses: dawidd6/action-get-tag@v1
-        with:
-          # Optionally strip `v` prefix
-          strip_v: true
       - name: Use tag
-        run: echo ${{steps.tag.outputs.tag}}
+        run: echo ${{steps.checkoutstep.outputs.CURRENT_TAG}}
 
       - name: Run Azure CLI
         uses: azure/CLI@v1
